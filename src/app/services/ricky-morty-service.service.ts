@@ -55,17 +55,36 @@ export class RickyMortyServiceService {
       map(({ apiEpisodes, localEpisodesData }) => {
         const localEpisodes = localEpisodesData.episodes;
         return apiEpisodes.episodes.map(apiEpisode => {
-          const matchingEpisode = localEpisodes.find(ep => ep.name === apiEpisode.name);
+          const matchingEpisode = localEpisodes.find(ep => ep.id === apiEpisode.id);
           return {
             ...apiEpisode,
             next_url: apiEpisodes.next_url,
-            image_url: matchingEpisode?.image_url || 'https://cdn.forbes.com.mx/2023/08/Rick-and-Morty.webp',
-            overview: matchingEpisode?.overview || apiEpisode.overview || 'Descripción no disponible'
+            image_url: matchingEpisode?.image || 'https://cdn.forbes.com.mx/2023/08/Rick-and-Morty.webp',
+            overview: apiEpisode.overview || 'Descripción no disponible'
           };
         });
       })
     );
   }
+  
+  logAllEpisodes(url: string = URL_RM_EPISODE): void {
+    this.http.get<{ info: { next: string }, results: any[] }>(url).pipe(
+      map(res => {
+        // Imprimir los nombres de los episodios de la página actual
+        res.results.forEach(episode => console.log(episode.name,episode.id));
+  
+        // Si hay una página siguiente, hacer una llamada recursiva
+        if (res.info.next) {
+          this.logAllEpisodes(res.info.next);
+        }
+      }),
+      catchError(error => {
+        console.error('Error al obtener episodios:', error);
+        return of([]);
+      })
+    ).subscribe();
+  }
+  
 
   getCharactersFromEpisode(episode: any): Observable<any[]> {
     const characterIds = episode.characters.map((url: string) => url.split('/').pop()).join(',');

@@ -13,11 +13,17 @@ export class CartService {
   }
 
   addToCart(episode: any) {
-    console.log('Antes de agregar:', this.cart.value); // Depuración
     const currentCart = this.cart.value;
-    this.cart.next([...currentCart, episode]); // Agregar y actualizar
-    console.log('Después de agregar:', this.cart.value); // Depuración
+    
+    // Si el episodio no tiene `image_url`, se asigna una imagen por defecto
+    const updatedEpisode = {
+      ...episode,
+      image_url: episode.image_url || 'https://cdn.forbes.com.mx/2023/08/Rick-and-Morty.webp'
+    };
+  
+    this.cart.next([...currentCart, updatedEpisode]); // Agregar y actualizar
   }
+  
 
   removeFromCart(id: number) {
     const updatedCart = this.cart.value.filter((ep) => ep.id !== id);

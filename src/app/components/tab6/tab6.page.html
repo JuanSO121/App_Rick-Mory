@@ -10,7 +10,8 @@
       <ion-row>
         <ion-col size="12" size-md="6" size-lg="4" *ngFor="let episode of favorites">
           <ion-card class="favorite-card">
-            <img [src]="'https://rickandmortyapi.com/api/character/avatar/' + episode.id + '.jpeg'" class="favorite-image" />
+            <img [src]="episode.image_url || 'https://cdn.forbes.com.mx/2023/08/Rick-and-Morty.webp'" class="favorite-image" />
+
             <ion-card-header>
               <ion-card-title class="favorite-title">{{ episode.name }}</ion-card-title>
               <p class="favorite-subtitle">{{ episode.episode }} - {{ episode.air_date }}</p>

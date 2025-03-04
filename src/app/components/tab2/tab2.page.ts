@@ -16,6 +16,7 @@ export class Tab2Page implements OnInit {
 
   ngOnInit() {
     this.loadCharacters();
+    this.rickMortyService.logAllEpisodes();
   }
 
   loadCharacters() {
