@@ -1,0 +1,49 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let episode of episodes">
+        <ion-card class="episode-card" (click)="toggleEpisode(episode)">
+          <img
+            class="episode-image"
+            [src]="episode.image_url || 'assets/default-image.jpg'"
+            alt="{{ episode.name }}"
+          />
+          <ion-card-header class="header-container">
+            <ion-icon 
+              [name]="isFavorite(episode) ? 'heart' : 'heart-outline'"
+              [style.color]="isFavorite(episode) ? 'green' : 'white'"
+              class="favorite-icon"
+              (click)="toggleFavorite(episode, $event)">
+            </ion-icon>
+            <ion-card-title class="episode-title">{{ episode.name }}</ion-card-title>
+            <ion-icon name="chevron-down-outline" class="expand-icon" *ngIf="expandedEpisodeId !== episode.id"></ion-icon>
+            <ion-icon name="chevron-up-outline" class="expand-icon" *ngIf="expandedEpisodeId === episode.id"></ion-icon>
+          </ion-card-header>
+          
+          <div class="episode-details" [class.expanded]="expandedEpisodeId === episode.id">
+            <ion-spinner *ngIf="loadingCharacters"></ion-spinner>
+            <ion-card-content>
+              <p><strong>Temporada:</strong> {{ episode.episode }}</p>
+              <p><strong>Fecha de estreno:</strong> {{ episode.air_date }}</p>
+              <p><strong>Descripción:</strong> {{ episode.overview }}</p>
+            </ion-card-content>
+
+            <!-- Reemplazo de la lista por el componente de personajes -->
+            <app-personaje-modal 
+              [characters]="charactersMap[episode.id] || []"
+              [loading]="loadingCharacters">
+            </app-personaje-modal>
+
+            <p *ngIf="!loadingCharacters && !charactersMap[episode.id]?.length">
+              No hay personajes disponibles.
+            </p>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingText="Cargando más episodios..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,62 @@
+.favorites-container {
+  padding: 16px;
+}
+
+.favorite-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.favorite-card:hover {
+  transform: scale(1.05);
+}
+
+.favorite-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.favorite-title {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.favorite-subtitle {
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+}
+
+.favorite-actions {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.clear-favorites-btn {
+  margin-top: 20px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.empty-favorites {
+  text-align: center;
+  padding: 40px;
+}
+
+.empty-favorites-icon {
+  font-size: 60px;
+  color: gray;
+}
+
+.empty-favorites-text {
+  font-size: 18px;
+  color: gray;
+  font-weight: bold;
+}

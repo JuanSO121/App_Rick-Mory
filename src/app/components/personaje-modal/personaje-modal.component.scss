@@ -1,0 +1,30 @@
+.character-item {
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  background: var(--ion-color-light);
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--ion-color-medium);
+  }
+}
+
+ion-avatar img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.character-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+ion-label p {
+  font-size: 0.8rem;
+  color: var(--ion-color-dark);
+  margin: 2px 0;
+}

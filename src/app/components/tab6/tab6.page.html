@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>❤️ Mis Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="favorites.length > 0; else emptyFavorites" class="favorites-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4" *ngFor="let episode of favorites">
+          <ion-card class="favorite-card">
+            <img [src]="'https://rickandmortyapi.com/api/character/avatar/' + episode.id + '.jpeg'" class="favorite-image" />
+            <ion-card-header>
+              <ion-card-title class="favorite-title">{{ episode.name }}</ion-card-title>
+              <p class="favorite-subtitle">{{ episode.episode }} - {{ episode.air_date }}</p>
+            </ion-card-header>
+            <ion-card-content class="favorite-actions">
+              <ion-button fill="clear" (click)="removeFromFavorites(episode.id)" color="danger">
+                <ion-icon name="trash-outline"></ion-icon>
+                Eliminar
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button expand="full" class="clear-favorites-btn" (click)="clearFavorites()" color="danger">
+      <ion-icon name="trash-bin-outline" slot="start"></ion-icon>
+      Vaciar Favoritos
+    </ion-button>
+  </div>
+
+  <!-- Mensaje cuando no hay favoritos -->
+  <ng-template #emptyFavorites>
+    <div class="empty-favorites">
+      <ion-icon name="heart-dislike-outline" class="empty-favorites-icon"></ion-icon>
+      <p class="empty-favorites-text">No tienes episodios favoritos</p>
+    </div>
+  </ng-template>
+</ion-content>

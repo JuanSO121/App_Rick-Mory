@@ -1,0 +1,14 @@
+<ion-spinner *ngIf="loading"></ion-spinner>
+
+<ion-list>
+  <ion-item *ngFor="let character of characters" class="character-item">
+    <ion-avatar slot="start">
+      <img [src]="character.image" [alt]="character.name">
+    </ion-avatar>
+    <ion-label>
+      <h2 class="character-name">{{ character.name }}</h2>
+      <p>🩺 {{ character.status }} | 👽 {{ character.species }} | ⚥ {{ character.gender }}</p>
+      <p>🌍 {{ character.origin.name }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>

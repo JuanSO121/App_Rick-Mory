@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>📸 Cámara y Galería</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="button-container">
+    <ion-button expand="block" color="tertiary" (click)="takePhoto()">
+      <ion-icon name="camera-outline" slot="start"></ion-icon>
+      Tomar Foto
+    </ion-button>
+
+    <ion-button expand="block" color="success" (click)="pickFromGallery()">
+      <ion-icon name="image-outline" slot="start"></ion-icon>
+      Elegir de la Galería
+    </ion-button>
+  </div>
+
+  <div *ngIf="photo" class="photo-container">
+    <h3>📷 Vista Previa</h3>
+    <div class="photo-frame">
+      <img [src]="photo" alt="Foto tomada" class="photo-preview" />
+    </div>
+  </div>
+</ion-content>
+

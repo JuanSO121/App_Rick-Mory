@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Personajes de Rick & Morty</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-personaje-modal [characters]="characters" [loading]="loading"></app-personaje-modal>
+
+  <!-- <app-personajes-modal [characters]="personajesDeEpisodio" [loading]="loading"></app-personajes-modal> -->
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingText="Cargando más personajes..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
