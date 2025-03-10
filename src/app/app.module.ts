@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 import { PersonajeModalComponent } from './components/personaje-modal/personaje-modal.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PersonajeModalComponent } from './components/personaje-modal/personaje-
     AppRoutingModule,
     HttpClientModule,
     PersonajeModalComponent, // Agrégalo aquí como standalone
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

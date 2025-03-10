@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
 import { PersonajeModalComponent } from '../personaje-modal/personaje-modal.component';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { EpisodesComponent } from "../episodes/episodes.component";
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
-    PersonajeModalComponent
-  ],
+    PersonajeModalComponent,
+    EpisodesComponent
+],
   exports: [PersonajeModalComponent],
   declarations: [Tab3Page]
 })

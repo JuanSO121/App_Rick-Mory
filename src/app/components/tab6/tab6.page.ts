@@ -13,10 +13,11 @@ export class Tab6Page implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.cart$.subscribe((favorites) => {
+    this.cartService.cart$.subscribe(favorites => {
       this.favorites = favorites;
     });
   }
+  
 
   removeFromFavorites(id: number) {
     this.cartService.removeFromCart(id);

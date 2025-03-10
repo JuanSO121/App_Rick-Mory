@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del Personaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loading; else loadingTemplate">
+  <ion-card>
+    <ion-img [src]="character.image" alt="{{ character.name }}"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ character.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>🩺 Estado: {{ character.status }}</p>
+      <p>👽 Especie: {{ character.species }}</p>
+      <p>⚥ Género: {{ character.gender }}</p>
+      <p>🌍 Origen: {{ character.origin.name }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Episodios donde aparece</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let episode of episodes">
+      <ion-label>
+        <h2>{{ episode.name }}</h2>
+        <p>📅 {{ episode.air_date }} | 📺 {{ episode.episode }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ng-template #loadingTemplate>
+  <ion-spinner></ion-spinner>
+</ng-template>

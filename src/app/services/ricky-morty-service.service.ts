@@ -84,7 +84,41 @@ export class RickyMortyServiceService {
       })
     ).subscribe();
   }
+
+  getEpisodesByCharacter(character: any): Observable<any[]> {
+    if (!character.episode || character.episode.length === 0) {
+      return of([]); // Retorna un array vacío si el personaje no tiene episodios
+    }
   
+    const episodeIds = character.episode.map((url: string) => url.split('/').pop()).join(',');
+    return this.http.get<any>(`${URL_RM}/episode/${episodeIds}`).pipe(
+      map(data => Array.isArray(data) ? data : [data]), // Asegura que siempre sea un array
+      catchError(error => {
+        console.error('Error al obtener episodios del personaje:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getEpisodesByIds(ids: string[]): Observable<any[]> {
+    return this.http.get<any>(`${URL_RM}/episode/${ids.join(',')}`).pipe(
+      map((data) => (Array.isArray(data) ? data : [data])), // Asegura que sea un array
+      catchError((error) => {
+        console.error('Error al obtener episodios:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getCharacterById(id: string): Observable<any> {
+    return this.http.get<any>(`${URL_RM}/character/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error al obtener personaje:', error);
+        return of(null);
+      })
+    );
+  }
+
 
   getCharactersFromEpisode(episode: any): Observable<any[]> {
     const characterIds = episode.characters.map((url: string) => url.split('/').pop()).join(',');

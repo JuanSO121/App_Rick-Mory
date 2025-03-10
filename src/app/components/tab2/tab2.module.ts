@@ -6,6 +6,7 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { PersonajeModalComponent } from "../personaje-modal/personaje-modal.component";
+import { EpisodesComponent } from "../episodes/episodes.component";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { PersonajeModalComponent } from "../personaje-modal/personaje-modal.comp
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    PersonajeModalComponent
+    PersonajeModalComponent,
+    EpisodesComponent
 ],
   declarations: [Tab2Page]
 })
